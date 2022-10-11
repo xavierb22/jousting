@@ -2,6 +2,7 @@ public class Roster {
     Node head = null;
     Node tail = null;
 
+    //this method adds a new participant
     public void addParticipant(Participant particapant) {
         Node newNode = new Node(particapant);
 
@@ -19,13 +20,14 @@ public class Roster {
         }
     }
 
+    //this method shows the list of participants organized by seed
     public void viewParticipants() {
         Node current = head;
         if (head == null) {
             System.out.println("no one has registered yet");
             return;
         }
-
+        // this seeds participants before printing the list
         seedParticipants();
 
         while (current != null) {
@@ -35,6 +37,7 @@ public class Roster {
         }
     }
 
+    //this method deletes a selected participant
     public void deleteParticipant(String deltarget) {
         Node current = head;
         if (current == null) {
@@ -65,6 +68,7 @@ public class Roster {
         return;
     }
 
+    //this method swaps two selected participants
     public void swapParticipants(String swap1, String swap2) {
         Node current = head;
         Node alsocurrent = head;
@@ -77,6 +81,7 @@ public class Roster {
             return;
         }
 
+        //these two loops find the two participants
         while (current != null && current.participant.name != swap1) {
             current = current.next;
         }
@@ -106,6 +111,7 @@ public class Roster {
         alsocurrent.next = temp;
     }
 
+    //this method sets each participant's seed
     public void seedParticipants(){
         Node current = head;
 
@@ -116,5 +122,8 @@ public class Roster {
             i++;
             current = current.next;
         }
+    }
+    public void clear(){
+
     }
 }

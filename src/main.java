@@ -2,7 +2,7 @@ public class main {
     public static void main(String[] args)
     {
         /*
-        todo - comment on code, look into search(), add fill()
+        todo - add clear(), add fill()
         */
         /*
         System.out.println("who is the first opponent");

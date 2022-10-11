@@ -1,7 +1,7 @@
 public class Node
 {
     Participant participant;
-    Node previous;
+    Node prev;
     Node next;
 
     public Node(Participant participant) {

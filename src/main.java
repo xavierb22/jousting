@@ -2,6 +2,9 @@ public class main {
     public static void main(String[] args)
     {
         /*
+        todo - comment on code, look into search(), add fill()
+        */
+        /*
         System.out.println("who is the first opponent");
 
         Scanner names = new Scanner(System.in);
@@ -11,7 +14,8 @@ public class main {
 
         String name2 = names.nextLine();
 
-        System.out.println("what are " + name1 + "'s odds of winning (american odds)");
+        System.out.println("what are " + name1 +
+        "'s odds of winning (american odds)");
 
         Scanner odds = new Scanner(System.in);
 
@@ -25,30 +29,35 @@ public class main {
 
         Roster roster = new Roster();
 
-        Participant seed1 = new Participant("bob", 1, "sir");
+        Participant seed1 = new Participant("bob",  "sir");
         roster.addParticipant(seed1);
 
-        Participant seed2 = new Participant("bill", 2, "knight");
+        Participant seed2 = new Participant("bill", "knight");
         roster.addParticipant(seed2);
 
-        Participant seed3 = new Participant("tim", 3, "jester");
+        Participant seed3 = new Participant("tim",  "jester");
         roster.addParticipant(seed3);
 
-        Participant seed4 = new Participant("cam", 4, "regent");
+        Participant seed4 = new Participant("cam",  "regent");
         roster.addParticipant(seed4);
 
-        Participant seed5 = new Participant("doug", 5, "sir");
+        Participant seed5 = new Participant("doug", "sir");
         roster.addParticipant(seed5);
 
-        Participant seed6 = new Participant("sally", 6, "lady");
+        Participant seed6 = new Participant("sally",  "lady");
         roster.addParticipant(seed6);
 
-        Participant seed7 = new Participant("dally", 7, "sir");
+        Participant seed7 = new Participant("dally", "sir");
         roster.addParticipant(seed7);
 
-        Participant seed8 = new Participant("robert", 8, "sir");
+        Participant seed8 = new Participant("robert", "sir");
         roster.addParticipant(seed8);
 
+        Participant seed9 = new Participant("yim", "sir");
+        roster.addParticipant(seed9);
+
+        roster.deleteParticipant("cam");
+        roster.swapParticipants("tim","sally");
         roster.viewParticipants();
 
     }

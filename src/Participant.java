@@ -4,9 +4,8 @@ public class Participant
     int seed;
     String title;
 
-    public Participant(String name, int seed, String title) {
+    public Participant(String name, String title) {
         this.name = name;
-        this.seed = seed;
         this.title = title;
     }
 }

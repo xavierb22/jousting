@@ -1,3 +1,5 @@
+
+
 public class Roster {
     Node head = null;
     Node tail = null;
@@ -18,6 +20,7 @@ public class Roster {
 
             tail.next = null;
         }
+        seedParticipants();
     }
 
     //this method shows the list of participants organized by seed
@@ -72,6 +75,7 @@ public class Roster {
     public void swapParticipants(String swap1, String swap2) {
         Node current = head;
         Node alsocurrent = head;
+        seedParticipants();
 
         if (current == null) {
             System.out.println("no one has registered yet");
@@ -117,13 +121,60 @@ public class Roster {
 
         int i = 1;
 
-        while(current !=  null){
+        while(current != null){
             current.participant.seed = i;
             i++;
             current = current.next;
         }
     }
-    public void clear(){
 
+    //clears list
+    public void clear(){
+        head = null;
     }
+
+    public int sizeOf(){
+        Node current = head;
+        int size = 0;
+
+        while(current != null){
+            size++;
+            current = current.next;
+        }
+        return size;
+    }
+
+    public String findSeed(int seedFind){
+        Node current = head;
+
+        seedParticipants();
+
+        while(current.participant.seed != seedFind){
+            current = current.next;
+        }
+        return current.participant.name;
+    }
+/*
+    public void randomizeSeeding() {
+        for(int x = 1; x < 8; x++){
+            Random rand = new Random();
+            int index = rand.nextInt(8);
+            index++;
+
+            String indexnum = findSeed(index);
+            String xnum = findSeed(x);
+
+            System.out.println(xnum);
+            System.out.println(indexnum);
+
+            swapParticipants(xnum, indexnum);
+            viewParticipants();
+            System.out.println("-----------");
+
+        }
+
+        System.out.println("here's the shuffled list... ");
+
+        viewParticipants();
+    }*/
 }

@@ -1,8 +1,14 @@
+import java.util.Scanner;
+
 public class main {
+
+    static Roster roster = new Roster();
+    static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args)
     {
         /*
-        todo - add clear(), add fill()
+        todo - add fill()
         */
         /*
         System.out.println("who is the first opponent");
@@ -25,8 +31,6 @@ public class main {
 
         newmatch.Match(name1, name2, name1odds);
 
-         */
-
         Roster roster = new Roster();
 
         Participant seed1 = new Participant("bob",  "sir");
@@ -38,7 +42,7 @@ public class main {
         Participant seed3 = new Participant("tim",  "jester");
         roster.addParticipant(seed3);
 
-        Participant seed4 = new Participant("cam",  "regent");
+        Participant seed4 = new Participant("cam", "regent");
         roster.addParticipant(seed4);
 
         Participant seed5 = new Participant("doug", "sir");
@@ -56,9 +60,80 @@ public class main {
         Participant seed9 = new Participant("yim", "sir");
         roster.addParticipant(seed9);
 
-        roster.deleteParticipant("cam");
-        roster.swapParticipants("tim","sally");
-        roster.viewParticipants();
+        //roster.deleteParticipant("cam");
+        //roster.swapParticipants("bill","robert");
+        //roster.clear();
+        //roster.viewParticipants();
+        //roster.randomizeSeeding();
+        //System.out.println(roster.findSeed(2));
+*/
+        printMenu();
+        int input = scan.nextInt();
+        while (input != 0)
+        {
+            dispatch(input);
+            printMenu();
+            input = scan.nextInt();
+        }
 
+    }
+    public static void dispatch(int input)
+    {
+        switch (input) {
+            case 1:
+                System.out.println("Wednesday");
+                break;
+            case 2:
+                roster.viewParticipants();
+                break;
+            case 3:
+
+                System.out.println("their name?");
+                Scanner names = new Scanner(System.in);
+                String name = names.nextLine();
+
+                System.out.println("do they have a title(sir, night, etc...)");
+                Scanner titles = new Scanner(System.in);
+                String title = titles.nextLine();
+
+
+                Participant seed = new Participant(name, title);
+                roster.addParticipant(seed);
+
+                System.out.println(name + " has been added to " +
+                        "the roster");
+                break;
+            case 4:
+                System.out.println("who do you want to remove?");
+                Scanner targets = new Scanner(System.in);
+
+                roster.deleteParticipant(targets.nextLine());
+                break;
+            case 5:
+                System.out.println("Friday");
+                break;
+            case 6:
+                System.out.println("Saturday");
+                break;
+            case 7:
+                roster.clear();
+                break;
+            case 8:
+                System.out.println("Sunday");
+                break;
+        }
+    }
+
+    public static void printMenu()
+    {
+        System.out.println("\n Menu ");
+        System.out.println(" ====");
+        System.out.println("1: ");
+        System.out.println("2: view participants");
+        System.out.println("3: add participant");
+        System.out.println("4: remove participant");
+        System.out.println("5: ");
+        System.out.println("6: ");
+        System.out.print("\nEnter your choice: ");
     }
 }

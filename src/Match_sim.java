@@ -59,8 +59,7 @@ public class Match_sim
         // winning score
         int upperbound = 12;
         int winner_score = random.nextInt(upperbound) + 1;
-        int upperboundL = winner_score;
-        int loser_score = random.nextInt(upperboundL);
+        int loser_score = random.nextInt(winner_score);
 
         // this part calculates the winner of the match. if the number generated
         // above is higher than the percentage odds for first player to win then

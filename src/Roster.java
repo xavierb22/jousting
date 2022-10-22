@@ -53,7 +53,7 @@ public class Roster {
         }
 
         try {
-            while (current.participant.name.equals(deltarget) != true) {
+            while (!current.participant.name.equals(deltarget)) {
                 current = current.next;
             }
         } catch (Exception doesntExist) {
@@ -71,7 +71,6 @@ public class Roster {
         System.out.println("participant " + deltarget + " has been removed from the" +
                 " competition");
 
-        return;
     }
 
     //this method swaps two selected participants
@@ -85,17 +84,25 @@ public class Roster {
         }
 
         if (swap1.equals(swap2)) {
+            System.out.println("you entered the same name twice");
             return;
         }
 
         //these two loops find the two participants
-        while (current != null && current.participant.name.equals(swap1) != true) {
+        try{
+        while (current != null && !current.participant.name.equals(swap1)) {
             current = current.next;
+        }}catch (Exception doesntExist) {
+            System.out.println("could not find participant " + swap1);
+            return;
         }
 
-        while (alsocurrent != null && alsocurrent.participant.name.equals(swap2)
-                != true) {
-            alsocurrent = alsocurrent.next;
+        try{
+            while (current != null && !current.participant.name.equals(swap2)) {
+                current = current.next;
+            }}catch (Exception doesntExist) {
+            System.out.println("could not find participant " + swap2);
+            return;
         }
 
         //this swaps the previous nodes of the two participants
@@ -148,6 +155,7 @@ public class Roster {
         return size;
     }
 
+    /*
     public String findSeed(int seedFind){
         Node current = head;
 
@@ -158,6 +166,7 @@ public class Roster {
         }
         return current.participant.name;
     }
+     */
 
     public void randomizeSeeding() {
         Node current = head;
@@ -175,7 +184,7 @@ public class Roster {
             Random rand = new Random();
             int index = rand.nextInt(8);
 
-            if(nameExist(placeHold[index].name) != true){
+            if(!nameExist(placeHold[index].name)){
                 addParticipant(placeHold[index]);
                 n++;
             }
@@ -186,7 +195,7 @@ public class Roster {
         Node current = head;
 
         for(int i=1; i <= sizeOf(); i++){
-            if(current.participant.name == nCheck){
+            if(current.participant.name.equals(nCheck)){
                 return true;
             }
             else current = current.next;
@@ -219,7 +228,7 @@ public class Roster {
             Random rand = new Random();
             int index = rand.nextInt(8);
 
-            if(nameExist(fillIns[index].name) != true){
+            if(!nameExist(fillIns[index].name)){
                 addParticipant(fillIns[index]);
                 System.out.println(fillIns[index].title + " " +
                         fillIns[index].name + " has been added to " + "the roster");

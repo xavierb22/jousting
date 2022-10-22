@@ -5,8 +5,8 @@ public class Roster {
     Node tail = null;
 
     //this method adds a new participant
-    public void addParticipant(Participant particapant) {
-        Node newNode = new Node(particapant);
+    public void addParticipant(Participant participant) {
+        Node newNode = new Node(participant);
 
         if (head == null) {
             head = tail = newNode;
@@ -33,15 +33,11 @@ public class Roster {
         // this seeds participants before printing the list
         seedParticipants();
 
-        System.out.println("here is the current roster");
-        System.out.println("--------------------------");
-
         while (current != null) {
             System.out.println(current.participant.seed + "- " +
                     current.participant.title + " " + current.participant.name);
             current = current.next;
         }
-        System.out.println("--------------------------");
     }
 
     //this method deletes a selected participant
@@ -60,7 +56,7 @@ public class Roster {
             while (current.participant.name.equals(deltarget) != true) {
                 current = current.next;
             }
-        } catch (Exception doesntexist) {
+        } catch (Exception doesntExist) {
             System.out.println("could not find participant " + deltarget);
             return;
         }
@@ -164,26 +160,26 @@ public class Roster {
     }
 
     public void randomizeSeeding() {
-        for(int x = 1; x < 8; x++){
-            Random rand = new Random();
-            int index = rand.nextInt(8);
-            index++;
+        Node current = head;
 
-            String indexnum = findSeed(index);
-            String xnum = findSeed(x);
+        Participant[] placeHold = new Participant[8];
 
-            System.out.println(xnum);
-            System.out.println(indexnum);
-
-            swapParticipants(xnum, indexnum);
-            viewParticipants();
-            System.out.println("-----------");
-
+        for(int i=0; i < sizeOf(); i++){
+            placeHold[i] = current.participant;
+            current = current.next;
         }
 
-        System.out.println("here's the shuffled list... ");
+        clear();
 
-        viewParticipants();
+        for(int n = 1; sizeOf() < 8;){
+            Random rand = new Random();
+            int index = rand.nextInt(8);
+
+            if(nameExist(placeHold[index].name) != true){
+                addParticipant(placeHold[index]);
+                n++;
+            }
+        }
     }
 
     public boolean nameExist(String nCheck){

@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args)
     {
         /*
-        todo - add fill()
+        todo - add wasn't found to swap, add are you sure to clear
         System.out.println("who is the first opponent");
 
         Scanner names = new Scanner(System.in);
@@ -28,40 +28,6 @@ public class main {
         Match_sim newmatch = new Match_sim();
 
         newmatch.Match(name1, name2, name1odds);
-
-        Roster roster = new Roster();
-
-        Participant seed1 = new Participant("bob",  "sir");
-        roster.addParticipant(seed1);
-
-        Participant seed2 = new Participant("bill", "knight");
-        roster.addParticipant(seed2);
-
-        Participant seed3 = new Participant("tim",  "jester");
-        roster.addParticipant(seed3);
-
-        Participant seed4 = new Participant("cam", "regent");
-        roster.addParticipant(seed4);
-
-        Participant seed5 = new Participant("doug", "sir");
-        roster.addParticipant(seed)5;
-
-        Participant seed6 = new Participant("sally",  "lady");
-        roster.addParticipant(seed6);
-
-        Participant seed7 = new Participant("dally", "sir");
-        roster.addParticipant(seed7);
-
-        Participant seed8 = new Participant("robert", "sir");
-        roster.addParticipant(seed9);
-
-
-        //roster.deleteParticipant("cam");
-        //roster.swapParticipants("bill","robert");
-        //roster.clear();
-        //roster.viewParticipants();
-        //roster.randomizeSeeding();
-        //System.out.println(roster.findSeed(2));
         */
         printMenu();
         int input = scan.nextInt();
@@ -80,7 +46,10 @@ public class main {
                 System.out.println("this will start tournament");
                 break;
             case 2:
+                System.out.println("here is the current roster");
+                System.out.println("--------------------------");
                 roster.viewParticipants();
+                System.out.println("--------------------------");
                 break;
             case 3:
 
@@ -128,6 +97,10 @@ public class main {
                 break;
             case 8:
                 roster.randomizeSeeding();
+                System.out.println("here is the new seeding");
+                System.out.println("--------------------------");
+                roster.viewParticipants();
+                System.out.println("--------------------------");
                 break;
         }
     }

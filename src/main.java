@@ -77,7 +77,7 @@ public class main {
     {
         switch (input) {
             case 1:
-                System.out.println("Wednesday");
+                System.out.println("this will start tournament");
                 break;
             case 2:
                 roster.viewParticipants();
@@ -127,7 +127,7 @@ public class main {
                 roster.clear();
                 break;
             case 8:
-                System.out.println("Sunday");
+                roster.randomizeSeeding();
                 break;
         }
     }

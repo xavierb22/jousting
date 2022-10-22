@@ -57,7 +57,7 @@ public class Roster {
         }
 
         try {
-            while (current.participant.name != deltarget) {
+            while (current.participant.name.equals(deltarget) != true) {
                 current = current.next;
             }
         } catch (Exception doesntexist) {
@@ -72,6 +72,9 @@ public class Roster {
             current.prev.next = current.next;
         }
 
+        System.out.println("participant " + deltarget + " has been removed from the" +
+                " competition");
+
         return;
     }
 
@@ -85,16 +88,17 @@ public class Roster {
             System.out.println("no one has registered yet");
         }
 
-        if (swap1 == swap2) {
+        if (swap1.equals(swap2)) {
             return;
         }
 
         //these two loops find the two participants
-        while (current != null && current.participant.name != swap1) {
+        while (current != null && current.participant.name.equals(swap1) != true) {
             current = current.next;
         }
 
-        while (alsocurrent != null && alsocurrent.participant.name != swap2) {
+        while (alsocurrent != null && alsocurrent.participant.name.equals(swap2)
+                != true) {
             alsocurrent = alsocurrent.next;
         }
 
@@ -158,7 +162,7 @@ public class Roster {
         }
         return current.participant.name;
     }
-/*
+
     public void randomizeSeeding() {
         for(int x = 1; x < 8; x++){
             Random rand = new Random();
@@ -180,7 +184,7 @@ public class Roster {
         System.out.println("here's the shuffled list... ");
 
         viewParticipants();
-    }*/
+    }
 
     public boolean nameExist(String nCheck){
         Node current = head;

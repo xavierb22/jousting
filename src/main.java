@@ -9,8 +9,6 @@ public class main {
     {
         /*
         todo - add fill()
-        */
-        /*
         System.out.println("who is the first opponent");
 
         Scanner names = new Scanner(System.in);
@@ -46,7 +44,7 @@ public class main {
         roster.addParticipant(seed4);
 
         Participant seed5 = new Participant("doug", "sir");
-        roster.addParticipant(seed5);
+        roster.addParticipant(seed)5;
 
         Participant seed6 = new Participant("sally",  "lady");
         roster.addParticipant(seed6);
@@ -55,10 +53,8 @@ public class main {
         roster.addParticipant(seed7);
 
         Participant seed8 = new Participant("robert", "sir");
-        roster.addParticipant(seed8);
-
-        Participant seed9 = new Participant("yim", "sir");
         roster.addParticipant(seed9);
+
 
         //roster.deleteParticipant("cam");
         //roster.swapParticipants("bill","robert");
@@ -66,7 +62,7 @@ public class main {
         //roster.viewParticipants();
         //roster.randomizeSeeding();
         //System.out.println(roster.findSeed(2));
-*/
+        */
         printMenu();
         int input = scan.nextInt();
         while (input != 0)
@@ -100,20 +96,32 @@ public class main {
                 Participant seed = new Participant(name, title);
                 roster.addParticipant(seed);
 
-                System.out.println(name + " has been added to " +
+                System.out.println(title + " " + name + " has been added to " +
                         "the roster");
                 break;
             case 4:
                 System.out.println("who do you want to remove?");
                 Scanner targets = new Scanner(System.in);
+                String del = targets.nextLine();
 
-                roster.deleteParticipant(targets.nextLine());
+                roster.deleteParticipant(del);
                 break;
             case 5:
-                System.out.println("Friday");
+                System.out.println("first person to swap?");
+                Scanner swapscan = new Scanner(System.in);
+                String swap1 = swapscan.nextLine();
+
+                System.out.println("second person to swap?");
+                Scanner swapscan2 = new Scanner(System.in);
+                String swap2 = swapscan2.nextLine();
+
+                roster.swapParticipants(swap1, swap2);
+
+                System.out.println(swap1 + " and " + swap2 +
+                        " have been switched");
                 break;
             case 6:
-                System.out.println("Saturday");
+                roster.fill();
                 break;
             case 7:
                 roster.clear();
@@ -126,14 +134,14 @@ public class main {
 
     public static void printMenu()
     {
-        System.out.println("\n Menu ");
-        System.out.println(" ====");
-        System.out.println("1: ");
+        System.out.println("1: start tournament");
         System.out.println("2: view participants");
         System.out.println("3: add participant");
         System.out.println("4: remove participant");
-        System.out.println("5: ");
-        System.out.println("6: ");
+        System.out.println("5: swap participants");
+        System.out.println("6: fill roster");
+        System.out.println("7: clear roster");
+        System.out.println("8: shuffle seeding");
         System.out.print("\nEnter your choice: ");
     }
 }

@@ -1,4 +1,4 @@
-
+import java.util.Random;
 
 public class Roster {
     Node head = null;
@@ -33,11 +33,15 @@ public class Roster {
         // this seeds participants before printing the list
         seedParticipants();
 
+        System.out.println("here is the current roster");
+        System.out.println("--------------------------");
+
         while (current != null) {
-            System.out.println(current.participant.seed + ": " +
+            System.out.println(current.participant.seed + "- " +
                     current.participant.title + " " + current.participant.name);
             current = current.next;
         }
+        System.out.println("--------------------------");
     }
 
     //this method deletes a selected participant
@@ -48,7 +52,7 @@ public class Roster {
             return;
         }
 
-        if (current.participant.name == deltarget) {
+        if (current.participant.name.equals(deltarget)) {
             head = current.next;
         }
 
@@ -177,4 +181,50 @@ public class Roster {
 
         viewParticipants();
     }*/
+
+    public boolean nameExist(String nCheck){
+        Node current = head;
+
+        for(int i=1; i <= sizeOf(); i++){
+            if(current.participant.name == nCheck){
+                return true;
+            }
+            else current = current.next;
+        }
+        return false;
+    }
+
+    public void fill(){
+
+        Participant[] fillIns = new Participant[8];
+
+        fillIns[0] = new Participant("bob",  "sir");
+
+        fillIns[1] = new Participant("bill", "knight");
+
+        fillIns[2] = new Participant("tim",  "jester");
+
+        fillIns[3] = new Participant("cam", "regent");
+
+        fillIns[4] = new Participant("doug", "sir");
+
+        fillIns[5] = new Participant("sally",  "lady");
+
+        fillIns[6] = new Participant("dally", "sir");
+
+        fillIns[7] = new Participant("robert", "sir");
+
+        System.out.println(sizeOf());
+        for(int n = 1; sizeOf() < 8;){
+            Random rand = new Random();
+            int index = rand.nextInt(8);
+
+            if(nameExist(fillIns[index].name) != true){
+                addParticipant(fillIns[index]);
+                System.out.println(fillIns[index].title + " " +
+                        fillIns[index].name + " has been added to " + "the roster");
+                n++;
+            }
+        }
+    }
 }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Match_sim
 {
-    static void Match(String name1,String name2,double name1odds)
+    static Participant Match(Participant name1, Participant name2, double name1odds)
     {
         double percentage_odds = 0;
 
@@ -32,21 +32,21 @@ public class Match_sim
         if (percentage_odds > 50)
         {
             int toldodds = (int) Math.round(name1odds);
-            System.out.println("\nTodays match is between sir " + name1 + " and Sir "
-                    + name2 +  ", " + name1 + " is the favorite with " + toldodds +
+            System.out.println("\nTodays match is between " + name2.title + " " + name2.name + " and " + name1.title
+                    +  " "  + name1.name +  ", " + name1.name + " is the favorite with " + toldodds +
                     " odds to win the match");
         }
         else if(percentage_odds < 50)
         {
             int toldodds = (int) Math.round(name1odds);
-            System.out.println("\nTodays match is between sir " + name1 + " and Sir "
-                    + name2 +  ", " + name2 + " is the favorite with -" + toldodds +
+            System.out.println("\nTodays match is between " + name1.title + " " + name1.name + " and " + name2.title
+               +  " "   + name2.name +  ", " + name2.name + " is the favorite with " + toldodds +
                     " odds to win the match");
         }
         else
         {
-            System.out.println("\nTodays match is between sir " + name1 + " and Sir "
-                    + name2 +  ", the odds are EVEN for both opponents");
+            System.out.println("\nTodays match is between " + name1.title + " " + name1.name + " and " + name2.title
+                    +  " "  + name2.name +  ", the odds are EVEN for both opponents");
         }
 
         // this prompts the user to press enter so the match can simulate
@@ -66,13 +66,17 @@ public class Match_sim
         // the second player wins otherwise the first player wins
         if (picked_number <= percentage_odds)
         {
-            System.out.println("\nsir " + name1 + " wins the match by a score of "
+            System.out.println("\n " + name1.title + " " + name1.name +
+                    " wins the match by a score of "
                     + winner_score + " - " + loser_score);
+            return name1;
         }
         else
         {
-            System.out.println("\nSir " + name2 + " wins the match by a score of "
+            System.out.println("\n " + name2.title + " " + name2.name +
+                    " wins the match by a score of "
                     + winner_score + " - " + loser_score);
+            return name2;
         }
     }
 }

@@ -36,7 +36,7 @@ public class Main {
     public static void dispatch(String input) {
         switch (input) {
             case "1":
-                System.out.println("this will start tournament");
+                roster.tournament();
                 break;
             case "2":
                 System.out.println("here is the current roster");

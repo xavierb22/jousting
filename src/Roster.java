@@ -3,6 +3,7 @@ import java.util.Random;
 public class Roster {
     Node head = null;
     Node tail = null;
+    Match_sim newmatch = new Match_sim();
 
     //this method adds a new participant
     public void addParticipant(Participant participant) {
@@ -155,8 +156,8 @@ public class Roster {
         return size;
     }
 
-    /*
-    public String findSeed(int seedFind){
+
+    public Participant findSeed(int seedFind){
         Node current = head;
 
         seedParticipants();
@@ -164,9 +165,8 @@ public class Roster {
         while(current.participant.seed != seedFind){
             current = current.next;
         }
-        return current.participant.name;
+        return current.participant;
     }
-     */
 
     public void randomizeSeeding() {
         Node current = head;
@@ -223,7 +223,6 @@ public class Roster {
 
         fillIns[7] = new Participant("robert", "sir");
 
-        System.out.println(sizeOf());
         for(int n = 1; sizeOf() < 8;){
             Random rand = new Random();
             int index = rand.nextInt(8);
@@ -233,6 +232,103 @@ public class Roster {
                 System.out.println(fillIns[index].title + " " +
                         fillIns[index].name + " has been added to " + "the roster");
                 n++;
+            }
+        }
+    }
+
+    public void tournament(){
+        if(sizeOf() < 8){
+            System.out.println("roster must have exactly 8 participants to start, it currently has " + sizeOf());
+            return;
+        }
+
+        Participant Q1 = Match_sim.Match(findSeed(1),
+                findSeed(8), oddscalc(1,8));
+
+        Participant Q2 = Match_sim.Match(findSeed(4),
+                findSeed(5), oddscalc(4,5));
+
+        Participant Q3 = Match_sim.Match(findSeed(3),
+                findSeed(6), oddscalc(3,6));
+
+        Participant Q4 = Match_sim.Match(findSeed(2),
+                findSeed(7), oddscalc(2,7));
+
+
+        Participant favS1;
+        Participant undS1;
+        Participant favS2;
+        Participant undS2;
+
+        if(Q1.seed < Q2.seed){
+            favS1 = Q1;
+            undS1 = Q2;
+        } else{
+            favS1 = Q2;
+            undS1 = Q1;
+        }
+        if(Q3.seed < Q4.seed){
+            favS2 = Q3;
+            undS2 = Q4;
+        } else{
+            favS2 = Q4;
+            undS2 = Q3;
+        }
+
+        Participant S1 = Match_sim.Match(favS1, undS1,
+                oddscalc(favS1.seed, undS1.seed));
+
+        Participant S2 = Match_sim.Match(favS2, undS2,
+                oddscalc(favS2.seed, undS2.seed));
+
+        Participant favF;
+        Participant undF;
+
+        if(S1.seed < S2.seed){
+            favF = S1;
+            undF = S2;
+        } else{
+            favF = S2;
+            undF = S1;
+        }
+
+        Participant winner = Match_sim.Match(favF, undF,
+                oddscalc(favF.seed, undF.seed));
+
+        System.out.println(winner.title + " " + winner.name
+                + " has won the tournament");
+    }
+    int oddscalc(int P1, int P2){
+        int difference = P2 - P1;
+        if(difference == 7){
+            return -400;
+        }
+        else if(difference == 6){
+            return -350;
+        }
+        else if(difference == 5){
+            return -300;
+        }
+        else if(difference == 4){
+            return -250;
+        }
+        else if(difference == 3){
+            return -200;
+        }
+        else if(difference == 2){
+            return -150;
+        }
+        else{
+            //this generates a random number from 0 to 100
+            Random random = new Random();
+            double double_random = random.nextDouble();
+            double picked_number = double_random * 100;
+
+            if(picked_number > 10){
+                return -125;
+            }
+            else{
+                return -100;
             }
         }
     }

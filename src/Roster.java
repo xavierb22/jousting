@@ -253,49 +253,17 @@ public class Roster {
 
         Participant Q4 = Match_sim.Match(findSeed(2),
                 findSeed(7), oddscalc(2,7));
+        
+        Participant S1 = Match_sim.Match(Q1, Q2,
+                oddscalc(Q1.seed, Q2.seed));
 
+        Participant S2 = Match_sim.Match(Q3, Q4,
+                oddscalc(Q3.seed, Q4.seed));
 
-        Participant favS1;
-        Participant undS1;
-        Participant favS2;
-        Participant undS2;
+        Participant winner = Match_sim.Match(S1, S2,
+                oddscalc(S1.seed, S2.seed));
 
-        if(Q1.seed < Q2.seed){
-            favS1 = Q1;
-            undS1 = Q2;
-        } else{
-            favS1 = Q2;
-            undS1 = Q1;
-        }
-        if(Q3.seed < Q4.seed){
-            favS2 = Q3;
-            undS2 = Q4;
-        } else{
-            favS2 = Q4;
-            undS2 = Q3;
-        }
-
-        Participant S1 = Match_sim.Match(favS1, undS1,
-                oddscalc(favS1.seed, undS1.seed));
-
-        Participant S2 = Match_sim.Match(favS2, undS2,
-                oddscalc(favS2.seed, undS2.seed));
-
-        Participant favF;
-        Participant undF;
-
-        if(S1.seed < S2.seed){
-            favF = S1;
-            undF = S2;
-        } else{
-            favF = S2;
-            undF = S1;
-        }
-
-        Participant winner = Match_sim.Match(favF, undF,
-                oddscalc(favF.seed, undF.seed));
-
-        System.out.println(winner.title + " " + winner.name
+        System.out.println("\n" + winner.title + " " + winner.name
                 + " has won the tournament");
     }
     int oddscalc(int P1, int P2){
@@ -303,20 +271,38 @@ public class Roster {
         if(difference == 7){
             return -400;
         }
+        if(difference == -7){
+            return +400;
+        }
         else if(difference == 6){
             return -350;
+        }
+        else if(difference == -6){
+            return +350;
         }
         else if(difference == 5){
             return -300;
         }
+        else if(difference == -5){
+            return +300;
+        }
         else if(difference == 4){
             return -250;
+        }
+        else if(difference == -4){
+            return +250;
         }
         else if(difference == 3){
             return -200;
         }
+        else if(difference == -3){
+            return +200;
+        }
         else if(difference == 2){
             return -150;
+        }
+        else if(difference == -2){
+            return +150;
         }
         else{
             //this generates a random number from 0 to 100
@@ -324,8 +310,11 @@ public class Roster {
             double double_random = random.nextDouble();
             double picked_number = double_random * 100;
 
-            if(picked_number > 10){
+            if(picked_number > 10 && difference == 1){
                 return -125;
+            }
+            else if(picked_number > 10 && difference == -1){
+                return +125;
             }
             else{
                 return -100;

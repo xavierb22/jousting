@@ -129,7 +129,7 @@ public class Main {
         System.out.println("3: add participant");
         System.out.println("4: remove participant");
         System.out.println("5: swap participants");
-        System.out.println("6: fill roster");
+        System.out.println("6: fill roster with random jousters");
         System.out.println("7: clear roster");
         System.out.println("8: shuffle seeding");
         System.out.print("\nEnter your choice: ");

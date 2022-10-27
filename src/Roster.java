@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Roster {
     Node head = null;
@@ -145,6 +146,7 @@ public class Roster {
         head = null;
     }
 
+    //this checks the current size of the linked list
     public int sizeOf(){
         Node current = head;
         int size = 0;
@@ -156,7 +158,7 @@ public class Roster {
         return size;
     }
 
-
+    //this finds a participant based on there seeding
     public Participant findSeed(int seedFind){
         Node current = head;
 
@@ -168,6 +170,8 @@ public class Roster {
         return current.participant;
     }
 
+    //this randomizes everyone's seeding by putting all the participants in an array, clearing the linked list than
+    //randomly places each participant back into the linked list
     public void randomizeSeeding() {
         Node current = head;
 
@@ -191,6 +195,7 @@ public class Roster {
         }
     }
 
+    //this checks if a name is taken by a participant
     public boolean nameExist(String nCheck){
         Node current = head;
 
@@ -203,6 +208,8 @@ public class Roster {
         return false;
     }
 
+    //this method takes names from an array and puts it into the linked list so the user doesn't have to pick new names
+    // if they don't want to
     public void fill(){
 
         Participant[] fillIns = new Participant[8];
@@ -236,43 +243,323 @@ public class Roster {
         }
     }
 
+    //this is the method thatg starts the tournament
     public void tournament(){
+
+        Scanner start = new Scanner(System.in);
         if(sizeOf() < 8){
             System.out.println("roster must have exactly 8 participants to start, it currently has " + sizeOf());
             return;
         }
 
+        //this prints out the opening message
+        System.out.println("\n\nWelcome!!!! to the annual Jousting tournament where men and women from across " +
+                "the kingdom come to get to compete for the gold trophy handed out by king author himself");
+        System.out.println("today should be an interesting competition");
+        System.out.println("\nnow lets get a look at how our participants are seeded " +
+                "after the qualifiers");
+        System.out.println("--------------------------");
+        viewParticipants();
+        System.out.println("--------------------------");
+        System.out.println("                             (press any button to continue)");
+        String pause = start.nextLine();
+
+        //shows of the schedule for round one
+        System.out.println("now that we've seen the roster lets see our schedule " +
+                "for the quarter finals...");
+
+        System.out.println("\n" + findSeed(1).title + " "
+                + findSeed(1).name);
+        System.out.println("VS");
+        System.out.println(findSeed(8).title + " "
+                + findSeed(8).name);
+        System.out.println("-------------");
+        System.out.println(findSeed(4).title + " "
+                + findSeed(4).name);
+        System.out.println("VS");
+        System.out.println(findSeed(5).title + " "
+                + findSeed(5).name);
+        System.out.println("-------------");
+        System.out.println(findSeed(3).title + " "
+                + findSeed(3).name);
+        System.out.println("VS");
+        System.out.println(findSeed(6).title + " "
+                + findSeed(6).name);
+        System.out.println("-------------");
+        System.out.println(findSeed(2).title + " "
+                + findSeed(2).name);
+        System.out.println("VS");
+        System.out.println(findSeed(7).title + " "
+                + findSeed(7).name);
+
+        System.out.println("                             (press any button to begin tournament)");
+        String pause2 = start.nextLine();
+
+        //before each match there is a slightly different message that shows the odds for the match and introduces the riders
+        System.out.println("\nour opening match of tournament is between the number one seed " + findSeed(1).title
+                + " " + findSeed(1).name + " and the number eight seed " + findSeed(8).title
+                +  " "  + findSeed(8).name +  ", " +
+                findSeed(1).name + " is the favorite with -" +
+                Math.abs(oddscalc(1,8)) + " odds to win the match");
+
+        System.out.println("                             (press any button to begin match)");
+        String pause3 = start.nextLine();
+
         Participant Q1 = Match_sim.Match(findSeed(1),
                 findSeed(8), oddscalc(1,8));
+        System.out.println("                             (press any button to continue)");
+        String pause4 = start.nextLine();
+
+        System.out.println("\nour second match is between the number four seed " + findSeed(4).title
+                + " " + findSeed(4).name + " and the number five seed " + findSeed(5).title
+                +  " "  + findSeed(5).name +  ", " +
+                        findSeed(4).name + " is the favorite, but not by much with -" +
+                        Math.abs(oddscalc(4,5)) + " odds to win the match");
+
+        System.out.println("                             (press any button to begin)");
+        String pause5 = start.nextLine();
 
         Participant Q2 = Match_sim.Match(findSeed(4),
                 findSeed(5), oddscalc(4,5));
+        System.out.println("                             (press any button to continue)");
+        String pause6 = start.nextLine();
+
+        System.out.println("\nnow that we know our first semi final match will be between " + Q1.name + " and " +
+                Q2.name + " lets move on to the other side of the bracket starting with a match is between " +
+                "\nthe number three seed " + findSeed(3).title
+                + " " + findSeed(3).name + " and the number six seed " + findSeed(6).title +  " "
+                + findSeed(6).name +  ", " + findSeed(3).name + " is the favorite with -"
+                + Math.abs(oddscalc(3,6)) + " odds to win the match");
+
+        System.out.println("                             (press any button to begin match)");
+        String pause7 = start.nextLine();
 
         Participant Q3 = Match_sim.Match(findSeed(3),
                 findSeed(6), oddscalc(3,6));
+        System.out.println("                             (press any button to continue)");
+        String pause8 = start.nextLine();
+
+        System.out.println("\nand finally we conclude our quarter finals with a match between the number two seed " + findSeed(2).title
+                + " " + findSeed(2).name + " and the number seven seed " + findSeed(7).title
+                +  " "  + findSeed(7).name +  ", " +
+                findSeed(2).name + " is the favorite,\nbut not by much with -" +
+                Math.abs(oddscalc(2,7)) + " odds to win the match");
+
+        System.out.println("                             (press any button to begin match)");
+        String pause9 = start.nextLine();
 
         Participant Q4 = Match_sim.Match(findSeed(2),
                 findSeed(7), oddscalc(2,7));
-        
+        System.out.println("                             (press any button to continue)");
+        String pause10 = start.nextLine();
+
+        //semi finals message
+        System.out.println("The quarter finals are over and there are only four riders left standing each of which " +
+                "is now one step closer to be a champion.\nbut first they will have to get past the semi finals. speaking" +
+                " of the semi finals here is the schedule...");
+
+        //semi finals schedule
+        System.out.println("\n" + Q1.title + " "
+                + Q1.name);
+        System.out.println("VS");
+        System.out.println(Q2.title + " "
+                + Q2.name);
+        System.out.println("-------------");
+        System.out.println(Q3.title + " "
+                + Q3.name);
+        System.out.println("VS");
+        System.out.println(Q4.title + " "
+                + Q4.name);
+
+        System.out.println("                             (press any button to begin semi finals)");
+        String pause11 = start.nextLine();
+
+        if(Q1.seed < Q2.seed){
+            System.out.println("the first match of the semi finals will be between " + Q1.title + " " + Q1.name + " and "
+                    + Q2.title + " " + Q2.name + ", " + Q1.name + " is the favorite with -" +
+                    Math.abs(oddscalc(Q1.seed, Q2.seed)) + " odds to win the match");
+        }
+        else{
+            System.out.println("the first match of the semi finals will be between " + Q1.title + " " + Q1.name + " and "
+                    + Q2.title + " " + Q2.name + ", " + Q2.name + " is the favorite with -" +
+                    Math.abs(oddscalc(Q1.seed, Q2.seed)) + " odds to win the match");
+        }
+        System.out.println("                             (press any button to begin match)");
+        String pause12 = start.nextLine();
+
         Participant S1 = Match_sim.Match(Q1, Q2,
                 oddscalc(Q1.seed, Q2.seed));
+        System.out.println("                             (press any button to continue)");
+        String pause13 = start.nextLine();
+
+        if(Q3.seed < Q4.seed){
+            System.out.println("This next match will decide who gets to face " + S1.name + " in the finals. its between " +
+                    Q3.title + " " + Q3.name + " and " + Q4.title + " " + Q4.name + ", " + Q3.name +
+                    " is the favorite with -" + Math.abs(oddscalc(Q3.seed, Q4.seed)) + " odds to win the match");
+        }
+        else{
+            System.out.println("This next match will decide who gets to face " + S1.name + " in the finals. its between " +
+                    Q3.title + " " + Q3.name + " and " + Q4.title + " " + Q4.name + ", " + Q4.name +
+                    " is the favorite with -" + Math.abs(oddscalc(Q3.seed, Q4.seed)) + " odds to win the match");
+        }
+
+        System.out.println("                             (press any button to begin match)");
+        String pause14 = start.nextLine();
 
         Participant S2 = Match_sim.Match(Q3, Q4,
                 oddscalc(Q3.seed, Q4.seed));
+        System.out.println("                             (press any button to continue)");
+        String pause15 = start.nextLine();
 
+        //determines who lost so they can play in third place match
+        Participant S1L;
+        Participant S2L;
+        if(Q1 == S1){
+            S1L = Q2;
+        }
+        else{
+            S1L = Q1;
+        }
+        if(Q3 == S2){
+            S2L = Q4;
+        }
+        else{
+            S2L = Q3;
+        }
+
+        //final round message
+        System.out.println("The final round is set where we'll see  " + S1L.title + " " + S1L.name + " and "
+                + S2L.title + " " + S2L.name + " compete for the bronze trophy and of course " + S1.title + " " + S1.name
+                + " and " + S2.title + " " + S2.name
+                + " will compete for the gold trophy.\nnow one last time, here's the schedule...");
+
+        //final round schedule
+        System.out.println("\n" + S1L.title + " "
+                + S1L.name);
+        System.out.println("VS");
+        System.out.println(S2L.title + " "
+                + S2L.name);
+        System.out.println("-------------");
+        System.out.println(S1.title + " "
+                + S1.name);
+        System.out.println("VS");
+        System.out.println(S2.title + " "
+                + S2.name);
+        System.out.println("                             (press any button to begin final round)");
+        String pause16 = start.nextLine();
+
+        if(S1L.seed < S2L.seed){
+            System.out.println("Here goes our third place match between " + S1L.title + " " + S1L.name + " and "
+                    + S2L.title + " " + S2L.name + " third place might not be what these two contestants set out for when" +
+                    "\nthey entered this tournament but a bronze trophy is better then nothing. " + S1L.name +
+                    " is the favorite with -" + Math.abs(oddscalc(S1L.seed, S2L.seed)) + " odds to win the match");
+        }else{
+            System.out.println("Here goes our third place match between " + S1L.title + " " + S1L.name + " and "
+                    + S2L.title + " " + S2L.name + " third place might not be what these two contestants set out for when" +
+                    "\nthey entered this tournament but a bronze trophy is better then nothing. " + S2L.name +
+                    " is the favorite with -" + Math.abs(oddscalc(S1L.seed, S2L.seed)) + " odds to win the match");
+        }
+
+        System.out.println("                             (press any button to begin match)");
+        String pause17 = start.nextLine();
+        Participant bronze = Match_sim.Match(S1L, S2L,
+                oddscalc(S1L.seed, S2L.seed));
+        System.out.println("                             (press any button to continue)");
+        String pause18 = start.nextLine();
+
+        if(S1.seed < S2.seed){
+            System.out.println("Now that " + bronze.title + " " + bronze.name + " has been declared our third place finalist" +
+                    " its time to find out who our second and first place finalist will be. \nboth " + S1.name + " and " + S2.name
+                    + " want to be the latter but only one can win it all. " +
+                    "will it be the -" + Math.abs(oddscalc(S1.seed, S2.seed)) + " favorite " + S1.title + " " + S1.name
+                    + " or will it be the underdog " + S2.title + " " + S2.name + ".\nwho knows? anything can happen in the " +
+                    "CHAMPIONSHIP MATCH!!!!");
+        }else{
+            System.out.println("Now that " + bronze.title + " " + bronze.name + " has been declared our third place finalist" +
+                    " its time to find out who our second and first place finalist will be. \nboth " + S1.name + " and " + S2.name
+                    + " want to be the later but only one can win it all. " +
+                    "will it be the -" + Math.abs(oddscalc(S1.seed, S2.seed)) + " favorite " + S2.title + " " + S2.name
+                    + " or will it be the underdog " + S1.title + " " + S1.name + ".\nwho knows? anything can happen in the " +
+                    "CHAMPIONSHIP MATCH!!!!");
+        }
+
+        System.out.println("                             (press any button to begin championship match)");
+        String pause19 = start.nextLine();
         Participant winner = Match_sim.Match(S1, S2,
                 oddscalc(S1.seed, S2.seed));
+        System.out.println("                             (press any button to see final results)");
+        String pause20 = start.nextLine();
 
-        System.out.println("\n" + winner.title + " " + winner.name
-                + " has won the tournament");
+        Participant[] firstroundouts = new Participant[4];
+
+        //this checks where everyone finished so ig can be printed out later
+        if(findSeed(1) == Q1){
+            firstroundouts[0] = findSeed(8);
+        }
+        else{
+            firstroundouts[0] = findSeed(1);
+        }
+        if(findSeed(4) == Q2){
+            firstroundouts[1] = findSeed(5);
+        }
+        else{
+            firstroundouts[1] = findSeed(4);
+        }
+        if(findSeed(3) == Q3){
+            firstroundouts[2] = findSeed(6);
+        }
+        else{
+            firstroundouts[2] = findSeed(3);
+        }
+        if(findSeed(2) == Q4){
+            firstroundouts[3] = findSeed(7);
+        }
+        else{
+            firstroundouts[3] = findSeed(2);
+        }
+        Participant BL;
+        if(bronze == S1L){
+            BL = S2L;
+        }
+        else{
+            BL = S1L;
+        }
+        Participant FL;
+        if(winner == S1){
+            FL = S2;
+        }
+        else{
+            FL = S1;
+        }
+
+        //this prints out the final results
+        System.out.println("*********************************************************************");
+        System.out.println(winner.title + " " + winner.name
+                + " has won the tournament and is the new champion of jousting");
+        System.out.println("*********************************************************************");
+
+        System.out.println("\nhere is the final standings for the tournament");
+        System.out.println("--------------------------");
+        System.out.println("1st(gold): " + winner.title + " " + winner.name);
+        System.out.println("2nd(silver): " + FL.title + " " + FL.name);
+        System.out.println("3rd(bronze): " + bronze.title + " " + bronze.name);
+        System.out.println("4th: " + BL.title + " " + BL.name);
+        System.out.println("5th-8th: " + firstroundouts[0].title + " " + firstroundouts[0].name);
+        System.out.println("5th-8th: " + firstroundouts[1].title + " " + firstroundouts[1].name);
+        System.out.println("5th-8th: " + firstroundouts[2].title + " " + firstroundouts[2].name);
+        System.out.println("5th-8th: " + firstroundouts[3].title + " " + firstroundouts[3].name);
+        System.out.println("--------------------------");
+        System.out.println("                             (press any button to go back to main menu)");
+        String pause21 = start.nextLine();
     }
+    //this sets the odds for each match based on the difference in both participants seeding
     int oddscalc(int P1, int P2){
         int difference = P2 - P1;
         if(difference == 7){
             return -400;
         }
         if(difference == -7){
-            return +400;
+            return 400;
         }
         else if(difference == 6){
             return -350;
@@ -284,40 +571,33 @@ public class Roster {
             return -300;
         }
         else if(difference == -5){
-            return +300;
+            return 300;
         }
         else if(difference == 4){
             return -250;
         }
         else if(difference == -4){
-            return +250;
+            return 250;
         }
         else if(difference == 3){
             return -200;
         }
         else if(difference == -3){
-            return +200;
+            return 200;
         }
         else if(difference == 2){
             return -150;
         }
         else if(difference == -2){
-            return +150;
+            return 150;
         }
         else{
-            //this generates a random number from 0 to 100
-            Random random = new Random();
-            double double_random = random.nextDouble();
-            double picked_number = double_random * 100;
 
-            if(picked_number > 10 && difference == 1){
+            if(difference == 1) {
                 return -125;
             }
-            else if(picked_number > 10 && difference == -1){
-                return +125;
-            }
             else{
-                return -100;
+                return 125;
             }
         }
     }

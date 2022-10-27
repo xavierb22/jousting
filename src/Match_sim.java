@@ -1,8 +1,7 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class Match_sim
-{
+{ //sims a match
     static Participant Match(Participant name1, Participant name2, double name1odds)
     {
         double percentage_odds = 0;
@@ -26,33 +25,6 @@ public class Match_sim
         Random random = new Random();
         double double_random = random.nextDouble();
         double picked_number = double_random * 100;
-
-        // this prints out a message before the match introducing both players and
-        // announcing the odds
-        if (percentage_odds > 50)
-        {
-            int toldodds = (int) Math.round(name1odds);
-            System.out.println("\nTodays match is between " + name2.title + " " + name2.name + " and " + name1.title
-                    +  " "  + name1.name +  ", " + name1.name + " is the favorite with " + toldodds +
-                    " odds to win the match");
-        }
-        else if(percentage_odds < 50)
-        {
-            int toldodds = (int) Math.round(name1odds);
-            System.out.println("\nTodays match is between " + name1.title + " " + name1.name + " and " + name2.title
-               +  " "   + name2.name +  ", " + name2.name + " is the favorite with " + toldodds +
-                    " odds to win the match");
-        }
-        else
-        {
-            System.out.println("\nTodays match is between " + name1.title + " " + name1.name + " and " + name2.title
-                    +  " "  + name2.name +  ", the odds are EVEN for both opponents");
-        }
-
-        // this prompts the user to press enter so the match can simulate
-        System.out.println("(press enter to simulate)");
-        Scanner start = new Scanner(System.in);
-        String check = start.nextLine();
 
         // this generates a random score. the winner can be given up to
         // 12 points and the loser can have up to 11,but it has to be lower than

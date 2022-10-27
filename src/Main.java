@@ -7,16 +7,11 @@ public class Main {
 
     public static void main(String[] args)
     {
-        /*
-        todo - tournament
-        Match_sim newmatch = new Match_sim();
-
-        newmatch.Match(name1, name2, name1odds);
-        */
         printMenu();
 
             String input = scan.nextLine();
 
+            //this makes sure the input put in is recognized
             if(!input.equals("0") && !input.equals("1")
                     && !input.equals("2") && !input.equals("3")
                     && !input.equals("4") && !input.equals("5")
@@ -25,6 +20,7 @@ public class Main {
                 System.out.println("\ninput unrecognized");
             }
 
+            //this calls on dispatch and shuts down if 0 is pressed
         while (!input.equals("0"))
         {
             dispatch(input);
@@ -33,18 +29,19 @@ public class Main {
         }
         System.out.println("\ngoodbye");
     }
+    //this is our main menu that allows the user to use all the features
     public static void dispatch(String input) {
         switch (input) {
-            case "1":
+            case "1": //starts tournament
                 roster.tournament();
                 break;
-            case "2":
+            case "2": //prints roster
                 System.out.println("here is the current roster");
                 System.out.println("--------------------------");
                 roster.viewParticipants();
                 System.out.println("--------------------------");
                 break;
-            case "3":
+            case "3": //adds new participants and makes sure roster doesn't exceed 8 participants
                 if (roster.sizeOf() == 8) {
                     System.out.println("roster cannot exceed 8 participants");
                     break;
@@ -60,7 +57,7 @@ public class Main {
                     break;
                 }
 
-                System.out.println("do they have a title(sir, night, etc...)");
+                System.out.println("what is their title?(sir, night, etc...)");
                 Scanner titles = new Scanner(System.in);
                 String title = titles.nextLine();
 
@@ -71,14 +68,14 @@ public class Main {
                 System.out.println(title + " " + name + " has been added to " +
                         "the roster");
                 break;
-            case "4":
+            case "4": //this removes a participant
                 System.out.println("who do you want to remove?");
                 Scanner targets = new Scanner(System.in);
                 String del = targets.nextLine();
 
                 roster.deleteParticipant(del);
                 break;
-            case "5":
+            case "5": //this swaps the seeding of two participants
                 System.out.println("first person to swap?");
                 Scanner swapscan = new Scanner(System.in);
                 String swap1 = swapscan.nextLine();
@@ -92,7 +89,7 @@ public class Main {
                 System.out.println(swap1 + " and " + swap2 +
                         " have been switched");
                 break;
-            case "6":
+            case "6": //this fills the remainder of the roster with pre made participants
                 if (roster.sizeOf() == 8) {
                     System.out.println("roster cannot exceed 8 participants");
                     break;
@@ -100,7 +97,7 @@ public class Main {
 
                 roster.fill();
                 break;
-            case "7":
+            case "7": //this clears all the participants from the roster but makes sure the user is sure about it
                 System.out.println("to confirm you want to clear the roster " +
                         "type CLEAR");
                 Scanner confirmclear = new Scanner(System.in);
@@ -113,7 +110,7 @@ public class Main {
                     System.out.println("roster not cleared");
                 }
                 break;
-            case "8":
+            case "8": //this randomizes the seeding
                 roster.randomizeSeeding();
                 System.out.println("here is the new seeding");
                 System.out.println("--------------------------");
@@ -122,7 +119,7 @@ public class Main {
                 break;
         }
     }
-
+//this prints out the option so the user knows whatv to do
     public static void printMenu()
     {
         System.out.println("  ");

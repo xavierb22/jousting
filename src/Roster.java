@@ -214,21 +214,21 @@ public class Roster {
 
         Participant[] fillIns = new Participant[8];
 
-        fillIns[0] = new Participant("bob",  "sir");
+        fillIns[0] = new Participant("Bob",  "Sir");
 
-        fillIns[1] = new Participant("bill", "knight");
+        fillIns[1] = new Participant("Bill", "Knight");
 
-        fillIns[2] = new Participant("tim",  "jester");
+        fillIns[2] = new Participant("Tim",  "Jester");
 
-        fillIns[3] = new Participant("cam", "regent");
+        fillIns[3] = new Participant("Cam", "Regent");
 
-        fillIns[4] = new Participant("doug", "sir");
+        fillIns[4] = new Participant("Doug", "Knight");
 
-        fillIns[5] = new Participant("sally",  "lady");
+        fillIns[5] = new Participant("Sally",  "Lady");
 
-        fillIns[6] = new Participant("dally", "sir");
+        fillIns[6] = new Participant("Lara", "Knight");
 
-        fillIns[7] = new Participant("robert", "sir");
+        fillIns[7] = new Participant("Robert", "Sir");
 
         for(int n = 1; sizeOf() < 8;){
             Random rand = new Random();
@@ -243,7 +243,7 @@ public class Roster {
         }
     }
 
-    //this is the method thatg starts the tournament
+    //this is the method that starts the tournament
     public void tournament(){
 
         Scanner start = new Scanner(System.in);
@@ -253,8 +253,8 @@ public class Roster {
         }
 
         //this prints out the opening message
-        System.out.println("\n\nWelcome!!!! to the annual Jousting tournament where men and women from across " +
-                "the kingdom come to get to compete for the gold trophy handed out by king author himself");
+        System.out.println("\n\nWelcome!!!! to the annual Jousting tournament where esteemed lancers from across " +
+                "the kingdom come to compete for the gold trophy handed out by King Jose himself");
         System.out.println("today should be an interesting competition");
         System.out.println("\nnow lets get a look at how our participants are seeded " +
                 "after the qualifiers");
@@ -296,7 +296,7 @@ public class Roster {
         String pause2 = start.nextLine();
 
         //before each match there is a slightly different message that shows the odds for the match and introduces the riders
-        System.out.println("\nour opening match of tournament is between the number one seed " + findSeed(1).title
+        System.out.println("\nour opening match of the tournament is between the number one seed " + findSeed(1).title
                 + " " + findSeed(1).name + " and the number eight seed " + findSeed(8).title
                 +  " "  + findSeed(8).name +  ", " +
                 findSeed(1).name + " is the favorite with -" +
@@ -342,7 +342,7 @@ public class Roster {
         System.out.println("\nand finally we conclude our quarter finals with a match between the number two seed " + findSeed(2).title
                 + " " + findSeed(2).name + " and the number seven seed " + findSeed(7).title
                 +  " "  + findSeed(7).name +  ", " +
-                findSeed(2).name + " is the favorite,\nbut not by much with -" +
+                findSeed(2).name + " is the favorite -" +
                 Math.abs(oddscalc(2,7)) + " odds to win the match");
 
         System.out.println("                             (press any button to begin match)");
@@ -553,51 +553,74 @@ public class Roster {
         String pause21 = start.nextLine();
     }
     //this sets the odds for each match based on the difference in both participants seeding
+    //random.nextInt is used to add variety to the odds
     int oddscalc(int P1, int P2){
         int difference = P2 - P1;
+        Random random = new Random();
         if(difference == 7){
-            return -400;
+            int oddnum = random.nextInt(400 - 352) + 351;
+            oddnum = -oddnum;
+            return oddnum;
         }
         if(difference == -7){
-            return 400;
+            int oddnum = random.nextInt(400 - 352) + 351;
+            return oddnum;
         }
         else if(difference == 6){
-            return -350;
+            int oddnum = random.nextInt(350 - 302) + 301;
+            oddnum = -oddnum;
+            return oddnum;
         }
         else if(difference == -6){
-            return +350;
+            int oddnum = random.nextInt(350 - 302) + 301;
+            return oddnum;
         }
         else if(difference == 5){
-            return -300;
+            int oddnum = random.nextInt(300 - 252) + 251;
+            oddnum = -oddnum;
+            return oddnum;
         }
         else if(difference == -5){
-            return 300;
+            int oddnum = random.nextInt(300 - 252) + 251;
+            return oddnum;
         }
         else if(difference == 4){
-            return -250;
+            int oddnum = random.nextInt(250 - 202) + 201;
+            oddnum = -oddnum;
+            return oddnum;
         }
         else if(difference == -4){
-            return 250;
+            int oddnum = random.nextInt(250 - 202) + 201;
+            return oddnum;
         }
         else if(difference == 3){
-            return -200;
+            int oddnum = random.nextInt(200 - 152) + 151;
+            oddnum = -oddnum;
+            return oddnum;
         }
         else if(difference == -3){
-            return 200;
+            int oddnum = random.nextInt(200 - 152) + 151;
+            return oddnum;
         }
         else if(difference == 2){
-            return -150;
+            int oddnum = random.nextInt(150 - 127) + 126;
+            oddnum = -oddnum;
+            return oddnum;
         }
         else if(difference == -2){
-            return 150;
+            int oddnum = random.nextInt(150 - 127) + 126;
+            return oddnum;
         }
         else{
 
             if(difference == 1) {
-                return -125;
+                int oddnum = random.nextInt(125 - 106) + 105;
+                oddnum = -oddnum;
+                return oddnum;
             }
             else{
-                return 125;
+                int oddnum = random.nextInt(125 - 106) + 105;
+                return oddnum;
             }
         }
     }

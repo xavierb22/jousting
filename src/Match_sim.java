@@ -29,8 +29,7 @@ public class Match_sim
         // this generates a random score. the winner can be given up to
         // 12 points and the loser can have up to 11,but it has to be lower than
         // winning score
-        int upperbound = 12;
-        int winner_score = random.nextInt(upperbound) + 1;
+        int winner_score = random.nextInt(12) + 1; // this has to be twelve then plus 1 to avoid getting 0
         int loser_score = random.nextInt(winner_score);
 
         // this part calculates the winner of the match. if the number generated
